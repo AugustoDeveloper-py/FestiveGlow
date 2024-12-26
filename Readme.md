@@ -28,7 +28,7 @@ A delightful, interactive web animation featuring Santa Claus in Google's minima
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/santa-animation.git
+git clone https://github.com/AugustoDeveloper-py/FestiveGlow.git
 ```
 
 2. Navigate to the project directory:
@@ -92,5 +92,5 @@ This project is actively maintained. Feel free to report issues or submit featur
 
 ---
 
-Made with ❤️ by [AugustoDevelop]
+Made with ❤️ by [AugustoDeveloper]
 
