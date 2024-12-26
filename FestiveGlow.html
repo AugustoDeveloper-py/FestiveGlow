@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.cdnjs.cloudflare.com/ajax/libs/google-fonts/1/css?family=Product+Sans" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+      overflow: hidden;
+      font-family: 'Product Sans', Arial, sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .santa {
+      position: relative;
+      width: 120px;
+      height: 160px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .body {
+      position: absolute;
+      bottom: 0;
+      width: 120px;
+      height: 100px;
+      background: #e53935;
+      border-radius: 60px 60px 30px 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .head {
+      position: absolute;
+      top: 20px;
+      left: 35px;
+      width: 50px;
+      height: 50px;
+      background: #ffdbac;
+      border-radius: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    /* Ajuste del gorro */
+    .hat {
+      position: absolute;
+      top: -5px;
+      left: 33px; 
+      width: 50px;
+      height: 40px;
+      background: #e53935;
+      border-radius: 25px 25px 0 0;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      transform: rotate(-5deg);
+      z-index: 2; /* Añadido z-index para que quede por encima */
+    }
+
+    .hat::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: 5px;
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .eyes {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .eye {
+      width: 8px;
+      height: 8px;
+      background: #333;
+      border-radius: 50%;
+      animation: blink 4s infinite;
+    }
+
+    .nose {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: #e57373;
+      border-radius: 50%;
+    }
+
+    .beard {
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 50px;
+      height: 35px;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .belt {
+      position: absolute;
+      bottom: 30px;
+      width: 120px;
+      height: 15px;
+      background: #4a148c;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .buckle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: #ffd700;
+      border-radius: 4px;
+      top: -2.5px;
+    }
+
+    .text-container {
+      text-align: center;
+      color: white;
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards 0.5s;
+    }
+
+    .holiday-text {
+      font-size: 2.5rem;
+      margin: 0;
+      background: linear-gradient(45deg, #ff4081, #00bcd4, #ffd700, #64ffda);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient 6s ease infinite;
+      background-size: 300% 300%;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 1s ease-in-out infinite;
+    }
+
+    .gift {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #4caf50;
+      border-radius: 5px;
+      animation: fall 2s linear infinite;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .gift::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 30px;
+      height: 5px;
+      background: #ffeb3b;
+      transform: translateY(-50%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(2deg); }
+      50% { transform: translateY(-20px) rotate(-2deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-100vh) rotate(0deg); }
+      to { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @keyframes blink {
+      0%, 48%, 52%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="santa">
+      <div class="hat"></div>
+      <div class="head">
+        <div class="face">
+          <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="nose"></div>
+        </div>
+        <div class="beard"></div>
+      </div>
+      <div class="body">
+        <div class="belt">
+          <div class="buckle"></div>
+        </div>
+      </div>
+    </div>
+    <div class="text-container">
+      <h1 class="holiday-text">¡Felices Fiestas!</h1>
+      <p class="subtitle">Que la magia de la Navidad llene tu hogar de alegría</p>
+    </div>
+    <div class="stars"></div>
+  </div>
+
+  <script>
+    // Crear estrellas
+    const stars = document.querySelector('.stars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 1 + 's';
+      stars.appendChild(star);
+    }
+
+    // Crear regalos cayendo
+    setInterval(() => {
+      const gift = document.createElement('div');
+      gift.className = 'gift';
+      gift.style.left = Math.random() * 100 + '%';
+      document.body.appendChild(gift);
+      
+      // Eliminar el regalo después de la animación
+      setTimeout(() => {
+        gift.remove();
+      }, 2000);
+    }, 1000);
+  </script>
+</body>
+</html>
